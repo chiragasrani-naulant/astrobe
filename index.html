@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f4a2e">
+<title>Duo by Astrobe · Learn astronomy in small steps</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,700;1,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--g:#0f4a2e;--g2:#0a3320;--lime:#c6f432;--cream:#f4f0e6;--paper:#fffdf8;--line:#e5dfcf;--ink:#10201a;--mute:#6f7569;--blue:#2a49e0;--pink:#ff4f8b;
+--r:18px;--disp:'Barlow Condensed','Arial Narrow',Impact,sans-serif}
+*{box-sizing:border-box;margin:0}
+html{-webkit-text-size-adjust:100%}
+body{font:400 15px/1.45 'DM Sans',system-ui,sans-serif;background:var(--cream);color:var(--ink);-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;text-align:inherit;-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:10px}
+.ic{flex:none;display:block}
+h1,h2,h3,.disp{font-family:var(--disp);font-style:italic;font-weight:800;text-transform:uppercase;line-height:.92;letter-spacing:.2px}
+.l{color:var(--lime)}
+.shell{min-height:100vh}
+.side{display:none}
+#app{padding-bottom:96px;min-width:0}
+/* hero */
+.hero{position:relative;overflow:hidden;color:#fff;padding:16px 20px 92px;min-height:340px;background:radial-gradient(120% 80% at 85% 10%,#1d7048 0,transparent 60%),linear-gradient(165deg,var(--g),var(--g2))}
+.stars{position:absolute;inset:0;width:100%;height:100%}
+.orb{position:absolute;right:-56px;top:70px;width:clamp(190px,46vw,320px);aspect-ratio:1;animation:float 7s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-10px) rotate(2deg)}}
+.top{position:relative;display:flex;justify-content:space-between;align-items:center}
+.logo{display:flex;align-items:center;gap:8px;font:italic 800 24px var(--disp);text-transform:uppercase}
+.logo small{font:500 11px 'DM Sans';text-transform:none;opacity:.7;margin-top:6px}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:6px 11px;border-radius:99px;background:#ffffff1f;font-weight:700;font-size:13px;font-variant-numeric:tabular-nums}
+.chip.lime{background:var(--lime);color:var(--ink)}.top .chip+.chip{margin-left:6px}
+.hi{position:relative;margin-top:40px;font-size:13px;opacity:.8}
+.hero h1{position:relative;margin-top:6px;font-size:clamp(58px,14vw,104px)}
+.sheet{position:relative;margin-top:-62px;background:var(--cream);border-radius:28px 28px 0 0;padding:22px 20px 8px}
+.sec{display:flex;justify-content:space-between;align-items:center;margin:26px 0 10px;font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
+.sec:first-child{margin-top:0}.sec button{color:var(--pink);font-size:11px;letter-spacing:.09em}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:16px;width:100%;display:block}
+button.card{transition:transform .15s,box-shadow .15s}
+button.card:hover{box-shadow:0 8px 22px #10201a14;transform:translateY(-2px)}button.card:active{transform:scale(.985)}
+.row{display:flex;align-items:center;gap:12px}.sb{justify-content:space-between}
+.eyebrow{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--pink)}
+.sm{font-size:12.5px;color:var(--mute)}
+.bar{height:8px;border-radius:9px;background:#ebe6d8;overflow:hidden;margin-top:10px}.bar i{display:block;height:100%;border-radius:9px;background:var(--lime);box-shadow:inset 0 0 0 1px #0000000d;transition:width .5s}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--lime);color:var(--ink);padding:11px 18px;border-radius:12px;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;transition:transform .12s,filter .12s}
+.btn:hover{filter:brightness(.96)}.btn:active{transform:scale(.96)}.btn.dark{background:var(--g);color:#fff}.btn.ghost{background:var(--paper);border:1px solid var(--line)}.btn.wide{width:100%;padding:16px}
+.btn[disabled]{opacity:.45;pointer-events:none}.btn.dim{background:#ebe6d8;color:var(--mute)}
+.g2{display:grid;gap:14px}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.tile{border-radius:16px;padding:14px;aspect-ratio:1/.92;display:flex;flex-direction:column;justify-content:space-between;color:#fff;font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:clamp(10px,2.7vw,12.5px);line-height:1.2;transition:transform .15s}
+.tile:hover{transform:translateY(-3px)}.tile:active{transform:scale(.96)}
+.tile .ic{width:clamp(24px,7vw,32px);height:auto}
+.week{display:flex;justify-content:space-between;margin-top:14px}
+.day{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:11px;color:var(--mute);font-weight:700}
+.dot{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:#ebe6d8;color:var(--ink)}.dot.on{background:var(--lime)}.dot.now{box-shadow:0 0 0 2px var(--paper),0 0 0 4px var(--g)}
+.art{border-radius:14px;overflow:hidden;position:relative;aspect-ratio:2/1;margin-bottom:12px}.art svg{width:100%;height:100%;display:block}
+.cc h3{font-size:26px;margin:4px 0 2px}
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:14px -20px;padding:2px 20px}.chips::-webkit-scrollbar{display:none}
+.ch{border:1px solid var(--line);background:var(--paper);border-radius:99px;padding:8px 15px;font-size:12.5px;font-weight:700;white-space:nowrap}.ch.on{background:var(--lime);border-color:var(--lime)}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+.pg{padding:20px}.pg h1{font-size:clamp(44px,9vw,68px);color:var(--g);margin-top:8px}
+.back{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--paper);border:1px solid var(--line)}
+.node{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--lime);font-weight:700;flex:none}.node.k{background:#ebe6d8;color:var(--mute)}
+.qwrap{max-width:660px;margin:0 auto;padding:20px}
+.opt{display:flex;align-items:center;gap:12px;width:100%;padding:13px 14px;margin-top:10px;background:var(--paper);border:2px solid var(--line);border-radius:14px;font-weight:500;transition:border-color .12s,transform .12s}
+.opt:hover{border-color:#cfc8b3}.opt:active{transform:scale(.99)}
+.opt b{width:28px;height:28px;border-radius:8px;background:#ebe6d8;display:grid;place-items:center;font-size:12px;flex:none}
+.opt.sel{border-color:var(--g)}.opt.sel b{background:var(--g);color:#fff}
+.opt.ok{border-color:#8fb90f;background:#f0fbc4}.opt.ok b{background:var(--lime)}.opt.bad{border-color:var(--pink);background:#ffe4ec;animation:shake .3s}.opt.bad b{background:var(--pink);color:#fff}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.fb{margin-top:12px;padding:12px 14px;border-radius:12px;font-size:14px}
+.q{font:italic 800 clamp(28px,6vw,36px)/1 var(--disp);text-transform:none;margin:8px 0 6px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);text-align:center}.stats b{display:block;font:italic 800 36px var(--disp)}.stats>div+div{border-left:1px solid var(--line)}
+.badge{text-align:center;opacity:.4}.badge.on{opacity:1}.badge .bi{width:52px;height:52px;margin:0 auto 8px;border-radius:50%;display:grid;place-items:center;background:#ebe6d8}.badge.on .bi{background:var(--lime)}
+.item .img{height:128px;background:#e9e3d3;display:grid;place-items:center;position:relative;overflow:hidden;color:var(--g)}
+.item .img:after{content:"";position:absolute;right:-26px;bottom:-26px;width:84px;height:84px;border-radius:50%;background:var(--lime)}
+.item .img .ic{position:relative;z-index:1;width:52px;height:52px}
+.item{padding:0;overflow:hidden}.item .in{padding:12px 14px 14px}
+.av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-weight:700;color:#fff;flex:none}
+nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;justify-content:space-around;background:var(--paper);border-top:1px solid var(--line);border-radius:22px 22px 0 0;box-shadow:0 -6px 24px #10201a14;padding:8px 6px calc(8px + env(safe-area-inset-bottom))}
+nav.tabs button{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 12px;border-radius:14px;font-size:10.5px;font-weight:700;letter-spacing:.04em;color:var(--mute)}
+nav.tabs button.on{color:var(--g);background:#eaf7b8}
+.splash{min-height:100vh;position:relative;overflow:hidden;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;gap:18px;padding:28px 24px calc(28px + env(safe-area-inset-bottom));background:radial-gradient(120% 80% at 80% 15%,#1d7048 0,transparent 60%),linear-gradient(165deg,var(--g),var(--g2))}
+.splash .orb{top:7%;right:-70px;width:clamp(240px,60vw,460px)}
+.splash h1{position:relative;font-size:clamp(72px,18vw,150px)}.splash p{position:relative;max-width:420px;opacity:.85}
+.splash .btn{position:relative;max-width:460px}
+.cf{position:fixed;top:-20px;width:9px;height:14px;z-index:99;border-radius:2px;animation:fall 2.3s ease-in forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+.toast{position:fixed;top:16px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:99px;z-index:100;font-size:14px;font-weight:700;white-space:nowrap}
+@media(min-width:640px){.tiles{max-width:560px}}
+@media(min-width:960px){
+.shell{display:grid;grid-template-columns:250px 1fr;max-width:1280px;margin:0 auto}
+.shell.solo{display:block;max-width:none}
+.side{display:flex;flex-direction:column;gap:6px;position:sticky;top:0;height:100vh;padding:24px 16px;border-right:1px solid var(--line)}
+.side .logo{color:var(--g);padding:0 10px 22px}
+.side button.nv{display:flex;align-items:center;gap:12px;padding:12px;border-radius:14px;font-weight:700;color:var(--mute)}
+.side button.nv:hover{background:#ebe6d8}.side button.nv.on{background:var(--lime);color:var(--ink)}
+.side .me{margin-top:auto}
+nav.tabs{display:none}#app{padding-bottom:40px}
+.hero{margin:20px 24px 0;border-radius:28px;padding:20px 36px 56px;min-height:380px}
+.sheet{margin-top:0;background:none;padding:24px 24px 8px}
+.g2{grid-template-columns:1.2fr 1fr}.pg{padding:32px 36px}.grid{grid-template-columns:repeat(auto-fill,minmax(270px,1fr))}
+.chips{margin:14px 0;padding:2px 0}.orb{right:-20px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="shell" id="shell"><aside class="side" id="side"></aside><main id="app"></main></div>
+<nav class="tabs" id="tabs"></nav>
+<script>
+/* ---------- icons (24px stroke set) ---------- */
+const I={
+home:'<path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5"/>',
+rocket:'<path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>',
+users:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+bag:'<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>',
+user:'<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+flame:'<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>',
+star:'<path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/>',
+zap:'<path d="M13 2 3 14h9l-1 8 10-12h-9z"/>',
+trophy:'<path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>',
+book:'<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>',
+check:'<path d="M20 6 9 17l-5-5"/>',lock:'<rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
+left:'<path d="M19 12H5"/><path d="m12 19-7-7 7-7"/>',x:'<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',right:'<path d="m9 18 6-6-6-6"/>',
+gift:'<rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/>',
+image:'<rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21"/>',
+award:'<circle cx="12" cy="8" r="6"/><path d="M15.48 12.89 17 22l-5-3-5 3 1.52-9.11"/>',
+shirt:'<path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/>',
+scope:'<path d="m10.065 12.493-6.18 1.318a.934.934 0 0 1-1.108-.702l-.537-2.15a1.07 1.07 0 0 1 .691-1.265l13.504-4.44"/><path d="m13.56 11.747 4.332-.924"/><path d="m16 21-3.105-6.21"/><path d="M16.485 5.94a2 2 0 0 1 1.455-2.425l1.09-.272a1 1 0 0 1 1.212.727l1.515 6.06a1 1 0 0 1-.727 1.213l-1.09.272a2 2 0 0 1-2.425-1.455z"/><path d="m6.158 8.633 1.114 4.456"/><path d="m8 21 3.105-6.21"/><circle cx="12" cy="13" r="2"/>',
+orbit:'<circle cx="12" cy="12" r="3"/><path d="M20.2 20.2c2.04-2.03.02-7.36-4.5-11.9-4.54-4.52-9.87-6.54-11.9-4.5-2.04 2.03-.02 7.36 4.5 11.9 4.54 4.52 9.87 6.54 11.9 4.5Z"/><path d="M15.7 15.7c4.52-4.54 6.54-9.87 4.5-11.9-2.03-2.04-7.36-.02-11.9 4.5-4.52 4.54-6.54 9.87-4.5 11.9 2.03 2.04 7.36.02 11.9-4.5Z"/>',
+hole:'<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/>',
+pen:'<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>'};
+const ic=(n,s=20,w=1.8,f)=>`<svg class="ic" width="${s}" height="${s}" viewBox="0 0 24 24" fill="${f?'currentColor':'none'}" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${I[n]}</svg>`;
+/* ---------- art ---------- */
+function stars(n,seed){let s=seed,r=()=>(s=(s*16807)%2147483647)/2147483647,o='';for(let i=0;i<n;i++)o+=`<circle cx="${r()*400|0}" cy="${r()*300|0}" r="${(r()*1.4+.4).toFixed(1)}" fill="#fff" opacity="${(r()*.6+.2).toFixed(2)}"/>`;return`<svg class="stars" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${o}</svg>`}
+const planet=()=>`<svg viewBox="0 0 320 320" aria-hidden="true"><defs><radialGradient id="pg" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#eaff86"/><stop offset=".5" stop-color="#a9d91c"/><stop offset="1" stop-color="#386010"/></radialGradient><clipPath id="fr"><rect x="0" y="170" width="320" height="200"/></clipPath></defs><ellipse cx="160" cy="170" rx="152" ry="40" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="7" transform="rotate(-18 160 170)"/><circle cx="160" cy="160" r="88" fill="url(#pg)"/><path d="M92 130c40 14 90 14 134-4M80 168c50 16 110 14 158-6" stroke="#4d7a12" stroke-opacity=".35" stroke-width="8" fill="none" stroke-linecap="round"/><ellipse cx="160" cy="170" rx="152" ry="40" fill="none" stroke="#fff" stroke-opacity=".9" stroke-width="7" transform="rotate(-18 160 170)" clip-path="url(#fr)"/></svg>`;
+const spark='M0-12 3-3 12 0 3 3 0 12-3 3-12 0-3-3Z';
+const ART={
+sol:`<g fill="none" stroke="#fff" stroke-opacity=".3"><circle cx="40" cy="65" r="50"/><circle cx="40" cy="65" r="85"/><circle cx="40" cy="65" r="120"/></g><circle cx="40" cy="65" r="26" fill="#ffd24d"/><circle cx="88" cy="48" r="6" fill="#fff"/><circle cx="120" cy="96" r="10" fill="#ffd0b0"/><circle cx="188" cy="40" r="14" fill="#fff"/><ellipse cx="188" cy="40" rx="26" ry="6" fill="none" stroke="#fff" stroke-width="2.5" transform="rotate(-20 188 40)"/>`,
+sta:`<g fill="#fff"><path d="${spark}" transform="translate(120 65) scale(2.6)"/><path d="${spark}" transform="translate(48 30) scale(.9)" opacity=".8"/><path d="${spark}" transform="translate(205 95) scale(1.2)" opacity=".9"/><path d="${spark}" transform="translate(190 25) scale(.6)"/><path d="${spark}" transform="translate(40 100) scale(.7)" opacity=".7"/><circle cx="85" cy="105" r="2"/><circle cx="160" cy="20" r="2"/></g>`,
+bh:`<ellipse cx="120" cy="65" rx="95" ry="24" fill="none" stroke="#ffb35c" stroke-width="7" transform="rotate(-8 120 65)"/><ellipse cx="120" cy="65" rx="70" ry="15" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="3" transform="rotate(-8 120 65)"/><circle cx="120" cy="65" r="30" fill="#05070a"/><path d="M90 62a30 30 0 0 1 60 0" stroke="#ffd9a0" stroke-width="3" fill="none"/>`,
+mis:`<g transform="translate(86 12) scale(4.2)" fill="none" stroke="#fff" stroke-width=".75" stroke-linecap="round" stroke-linejoin="round">${I.rocket}</g><circle cx="205" cy="35" r="16" fill="#fff" opacity=".9"/><circle cx="198" cy="30" r="4" fill="#d9d3c3"/><path d="M30 110c20-6 30-24 52-30" stroke="#fff" stroke-opacity=".5" stroke-dasharray="3 6" fill="none" stroke-width="2.5"/>`};
+const art=c=>`<div class="art" style="background:linear-gradient(135deg,${c.g[0]},${c.g[1]})"><svg viewBox="0 0 240 130" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${ART[c.id]}</svg></div>`;
+const mark=`<svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5" fill="#c6f432"/><ellipse cx="12" cy="12" rx="11" ry="4" fill="none" stroke="currentColor" stroke-width="1.6" transform="rotate(-25 12 12)"/></svg>`;
+const logo=`<div class="logo">${mark}Duo<small>by Astrobe</small></div>`;
+/* ---------- content ---------- */
+const C=[
+{id:'sol',t:'Solar System',ic:'orbit',g:['#f28c52','#a8420f'],lv:'Beginner',d:'Our cosmic neighbourhood, from Mercury to Neptune.',L:[
+{id:'sol1',t:'The Sun & Planets',i:'The Sun holds 99.8% of the solar system’s mass. Eight planets orbit it: four rocky (Mercury to Mars) and four giants (Jupiter to Neptune).',q:[
+['Which planet is closest to the Sun?',['Venus','Mercury','Mars'],1,'Mercury orbits about 58 million km from the Sun.'],
+['Which is the largest planet?',['Jupiter','Saturn','Earth'],0,'Over 1,300 Earths could fit inside Jupiter.'],
+['True or false: the Sun is a star.',['True','False'],0,'The Sun is a G-type main-sequence star.']]},
+{id:'sol2',t:'Moons & Dwarfs',i:'Moons orbit planets. Pluto became a dwarf planet in 2006 because it has not cleared its orbit of other objects.',q:[
+['How many moons does Earth have?',['1','2','0'],0,'The Moon is Earth’s only natural satellite.'],
+['Pluto is classified as a…',['Planet','Dwarf planet','Comet'],1,'The IAU reclassified it in 2006.'],
+['Which planet is famous for its rings?',['Mars','Saturn','Mercury'],1,'Saturn’s rings are mostly ice and rock.']]}]},
+{id:'sta',t:'Stars & Galaxies',ic:'star',g:['#7b7dff','#2a2c9c'],lv:'Beginner',d:'How stars are born, live and die.',L:[
+{id:'sta1',t:'Life of a Star',i:'Stars are born in nebulae, shine by fusing hydrogen into helium, and end as white dwarfs, neutron stars or black holes.',q:[
+['Stars shine by…',['Burning coal','Nuclear fusion','Reflecting light'],1,'Fusion in the core releases huge energy.'],
+['Where are stars born?',['Nebulae','Comets','Moons'],0,'Clouds of gas and dust collapse into stars.'],
+['Our galaxy is called…',['Andromeda','Milky Way','Triangulum'],1,'We live in a barred spiral galaxy.']]},
+{id:'sta2',t:'Galaxies',i:'A galaxy is billions of stars bound by gravity. The observable universe holds hundreds of billions of galaxies.',q:[
+['Nearest large galaxy to us?',['Andromeda','Whirlpool','Sombrero'],0,'Andromeda is ~2.5 million light-years away.'],
+['A light-year measures…',['Time','Distance','Speed'],1,'It is the distance light travels in a year.'],
+['True or false: gravity holds galaxies together.',['True','False'],0,'Gravity binds stars, gas and dark matter.']]}]},
+{id:'bh',t:'Black Holes',ic:'hole',g:['#3d4351','#0b0d12'],lv:'Intermediate',d:'Gravity so strong that light can’t escape.',L:[
+{id:'bh1',t:'What is a Black Hole?',i:'A black hole forms when a massive star collapses. Its boundary, the event horizon, is the point of no return.',q:[
+['The point of no return is the…',['Event horizon','Corona','Orbit'],0,'Past it, escape speed exceeds light speed.'],
+['Black holes form from…',['Collapsed massive stars','Small moons','Comets'],0,'Core collapse after a supernova.'],
+['Can light escape a black hole?',['Yes','No'],1,'Not once it crosses the event horizon.']]},
+{id:'bh2',t:'Seeing the Unseen',i:'We detect black holes by their effect on nearby matter. In 2019 the Event Horizon Telescope imaged one for the first time.',q:[
+['First black hole image came in…',['2019','1999','1969'],0,'It showed the shadow of M87*.'],
+['Gas falling in forms an…',['Accretion disk','Atmosphere','Ocean'],0,'It heats up and glows brightly.'],
+['The black hole at our galaxy’s centre is…',['Sagittarius A*','Cygnus X-1','M87*'],0,'It weighs about 4 million Suns.']]}]},
+{id:'mis',t:'Space Missions',ic:'rocket',g:['#e8437f','#8f1745'],lv:'Advanced',d:'Rockets, rovers and the telescopes watching.',L:[
+{id:'mis1',t:'Going to Space',i:'Yuri Gagarin became the first human in space in 1961. Apollo 11 landed humans on the Moon in 1969.',q:[
+['First human in space?',['Neil Armstrong','Yuri Gagarin','Buzz Aldrin'],1,'Vostok 1, April 12, 1961.'],
+['Apollo 11 landed on…',['Mars','The Moon','Venus'],1,'July 20, 1969.'],
+['Chandrayaan-3 landed near the…',['Lunar south pole','Mars','Sun'],0,'August 2023, a first for India.']]},
+{id:'mis2',t:'Eyes in the Sky',i:'Space telescopes avoid Earth’s atmosphere. Hubble launched in 1990; JWST in 2021 sees in infrared.',q:[
+['JWST mainly observes in…',['Infrared','X-ray','Radio'],0,'Infrared reveals cold, distant objects.'],
+['Hubble orbits…',['Earth','The Sun','Mars'],0,'About 540 km above Earth.'],
+['Which is a Mars rover?',['Perseverance','Voyager','Cassini'],0,'Perseverance landed in 2021.']]}]}];
+const BADGES=[['rocket','First Launch','Finish 1 lesson',s=>Object.keys(s.done).length>=1],['scope','Star Gazer','Earn 100 XP',s=>s.xp>=100],['flame','On Fire','3-day streak',s=>s.streak>=3],['book','Scholar','Finish 5 lessons',s=>Object.keys(s.done).length>=5],['trophy','Galaxy Master','Finish all lessons',s=>Object.keys(s.done).length>=8]];
+const SHOP=[['image','Nebula Wallpaper','Digital',50],['user','Astronaut Avatar','Digital',120],['book','Telescope Guide','Digital',200],['award','Gold Explorer Badge','Digital',300],['shirt','Astrobe Space Tee','Gear',400],['scope','Mini Telescope','Gear',800]];
+const RANKS=['Cadet','Pilot','Navigator','Commander','Admiral'];
+/* ---------- state ---------- */
+const D0={pts:0,xp:0,streak:0,last:'',days:[],done:{},daily:'',owned:[],name:'Explorer'};
+let S={...D0};try{S={...D0,...JSON.parse(localStorage.getItem('duo')||'{}')}}catch(e){}
+const save=()=>{try{localStorage.setItem('duo',JSON.stringify(S))}catch(e){}};
+const today=()=>new Date().toDateString(),yest=()=>new Date(Date.now()-864e5).toDateString();
+if(S.last&&S.last!==today()&&S.last!==yest())S.streak=0;
+function bump(){if(S.last===today())return;S.streak=S.last===yest()?S.streak+1:1;S.last=today();S.days=[...S.days,today()].slice(-60)}
+const lvl=()=>Math.floor(S.xp/100)+1,rank=()=>RANKS[Math.min(lvl()-1,4)],LS=()=>C.flatMap(c=>c.L);
+const $=id=>document.getElementById(id);
+let P='splash',A=null,F='all',SF='All',Q=null;
+const esc=s=>String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+function toast(m){const d=document.createElement('div');d.className='toast';d.textContent=m;document.body.append(d);setTimeout(()=>d.remove(),1800)}
+function confetti(){const cl=['#c6f432','#ff4f8b','#2a49e0','#fff','#f28c52'];for(let i=0;i<46;i++){const d=document.createElement('i');d.className='cf';d.style.cssText=`left:${Math.random()*100}vw;background:${cl[i%5]};animation-delay:${Math.random()*.6}s`;document.body.append(d);setTimeout(()=>d.remove(),3200)}}
+const nav=(p,a)=>{P=p;A=a===undefined?null:a;if(p!=='quiz')Q=null;draw();scrollTo(0,0)};
+const prog=c=>{const n=c.L.filter(l=>S.done[l.id]).length;return[n,Math.round(n/c.L.length*100)]};
+const chips=()=>`<span class="chip">${ic('flame',15,1.8,1)}${S.streak}</span><span class="chip lime">${ic('star',15,1.8,1)}${S.pts}</span>`;
+const greet=()=>{const h=new Date().getHours();return h<12?'Good morning':h<17?'Good afternoon':'Good evening'};
+/* ---------- views ---------- */
+const V={
+splash:()=>`<div class="splash">${stars(70,7)}<div class="orb">${planet()}</div><div class="logo" style="position:relative">${mark}Duo<small>by Astrobe</small></div><h1>Explore<br>the <span class="l">universe.</span></h1><p>Bite-sized astronomy lessons with quizzes and rewards. Five minutes a day is enough.</p><button class="btn wide" onclick="nav('home')">Get started ${ic('right',18,2.4)}</button></div>`,
+home:()=>{const nx=LS().find(l=>!S.done[l.id]),nc=nx&&C.find(c=>c.L.includes(nx)),fc=C.find(c=>prog(c)[1]<100)||C[0];
+const d=new Date(),dow=(d.getDay()+6)%7,wk=['M','T','W','T','F','S','S'].map((l,i)=>{const ds=new Date(d-(dow-i)*864e5).toDateString();return`<div class="day"><div class="dot ${S.days.includes(ds)?'on':''} ${i===dow?'now':''}">${S.days.includes(ds)?ic('check',16,2.6):''}</div>${l}</div>`}).join('');
+return`<section class="hero">${stars(60,3)}<div class="orb">${planet()}</div><div class="top">${logo}<div>${chips()}</div></div><p class="hi">${greet()}, ${esc(S.name)}</p><h1>Ready<br>to <span class="l">launch?</span></h1></section>
+<div class="sheet"><div class="g2"><div><div class="sec">Next mission<button onclick="nav('learn')">View all</button></div>
+${nx?`<button class="card" onclick="start('${nx.id}')"><div class="row sb"><div><div class="eyebrow">${nc.t}</div><h3 style="font-size:30px;margin:6px 0 4px;color:var(--g)">${nx.t}</h3><div class="sm">${nx.q.length} questions · up to ${nx.q.length*10+20} pts</div></div><div style="color:var(--g)">${ic(nc.ic,40,1.4)}</div></div><div class="bar"><i style="width:${prog(nc)[1]}%"></i></div></button>`:`<div class="card"><h3 style="font-size:28px;color:var(--g)">Every mission complete</h3><div class="sm" style="margin-top:6px">Try the daily quiz to keep your streak alive.</div></div>`}</div>
+<div><div class="sec">This week</div><div class="card"><div class="row sb"><div class="row" style="gap:8px">${ic('flame',22,1.8)}<b>${S.streak} day streak</b></div><button class="btn" onclick="claim()" ${S.daily===today()?'disabled':''}>${ic('gift',16,2)}${S.daily===today()?'Claimed':'+10 pts'}</button></div><div class="week">${wk}</div></div></div></div>
+<div class="tiles" style="padding:0 20px"><button class="tile" style="background:var(--lime);color:var(--ink)" onclick="nav('learn')">${ic('book',32,1.7)}Start<br>lesson</button><button class="tile" style="background:var(--blue)" onclick="daily()">${ic('zap',32,1.7)}Daily<br>quiz</button><button class="tile" style="background:var(--pink)" onclick="nav('community')">${ic('trophy',32,1.7)}Join<br>challenge</button></div>
+<div class="sheet" style="margin:0;padding-top:0"><div class="sec">Featured course<button onclick="nav('learn')">Browse</button></div><button class="card cc" onclick="nav('course','${fc.id}')">${art(fc)}<div class="row sb"><div><h3>${fc.t}</h3><div class="sm">${fc.d}</div></div><span class="btn">Explore</span></div></button></div>`},
+learn:()=>`<div class="pg"><div class="row sb"><div class="eyebrow">Learn</div><div class="row" style="gap:6px;color:var(--ink)"><span class="chip" style="background:#ebe6d8">${ic('flame',15,1.8,1)}${S.streak}</span><span class="chip lime">${ic('star',15,1.8,1)}${S.pts}</span></div></div><h1>Courses<br>for you</h1><div class="chips">${[['all','All'],...C.map(c=>[c.id,c.t])].map(x=>`<button class="ch ${F===x[0]?'on':''}" onclick="F='${x[0]}';draw()">${x[1]}</button>`).join('')}</div><div class="grid">${C.filter(c=>F==='all'||c.id===F).map(c=>{const[n,p]=prog(c);return`<button class="card cc" onclick="nav('course','${c.id}')">${art(c)}<div class="row sb"><span class="eyebrow">${c.L.length} lessons</span><span class="sm"><b>${c.lv}</b></span></div><h3>${c.t}</h3><div class="sm">${c.d}</div><div class="bar"><i style="width:${p}%"></i></div><div class="row sb" style="margin-top:12px"><span class="sm">${n}/${c.L.length} done</span><span class="btn">${n?'Continue':'Start'}</span></div></button>`}).join('')}</div></div>`,
+course:()=>{const c=C.find(x=>x.id===A);return`<div class="pg"><button class="back" aria-label="Back" onclick="nav('learn')">${ic('left',20,2)}</button><div style="margin-top:16px;max-width:620px">${art(c)}</div><h1>${c.t}</h1><div class="sm" style="margin-top:6px">${c.d}</div><div class="sec">Lessons</div><div style="max-width:620px;display:grid;gap:10px">${c.L.map((l,i)=>{const lock=i>0&&!S.done[c.L[i-1].id];return`<button class="card row sb" onclick="${lock?"toast('Finish the previous lesson first')":`start('${l.id}')`}"><div class="row"><div class="node ${lock?'k':''}">${S.done[l.id]?ic('check',20,2.6):lock?ic('lock',18,2):i+1}</div><div><b>${l.t}</b><div class="sm">${l.q.length} questions · up to ${l.q.length*10+20} pts</div></div></div>${ic('right',18,2)}</button>`}).join('')}</div></div>`},
+quiz:()=>{const n=Q.qs.length,X=`<button class="back" aria-label="Close" onclick="nav('${Q.back}','${Q.ba||''}')">${ic('x',20,2)}</button>`;
+if(Q.i<0)return`<div class="qwrap">${X}<h1 style="margin-top:16px;font-size:clamp(44px,9vw,64px);color:var(--g)">${Q.t}</h1><div class="card" style="margin-top:16px;font-size:17px;line-height:1.6">${Q.intro}</div><button class="btn wide" style="margin-top:16px" onclick="Q.i=0;draw()">Start quiz</button></div>`;
+if(Q.i>=n){if(!Q.fin){Q.fin=1;const b=lvl();let e=Q.ok*10;if(Q.id==='daily'){if(S.daily!==today()){e+=10;S.daily=today()}}else if(!S.done[Q.id]){e+=20;S.done[Q.id]=1}Q.e=e;S.pts+=e;S.xp+=e;bump();Q.up=lvl()>b;save();if(Q.ok>=n-1)confetti()}
+return`<div class="qwrap" style="text-align:center;padding-top:48px"><div style="width:96px;height:96px;margin:0 auto 18px;border-radius:50%;background:var(--lime);display:grid;place-items:center;color:var(--g)">${ic('trophy',46,1.6)}</div><h1 style="color:var(--g);font-size:56px">Mission<br>complete</h1><p style="margin:10px 0 16px" class="sm">${Q.ok} of ${n} correct${Q.up?` · You’re now a ${rank()}`:''}</p><div class="card disp" style="display:inline-block;width:auto;background:var(--g);color:var(--lime);font-size:40px;padding:12px 26px">+${Q.e} pts</div><div class="row" style="margin-top:26px"><button class="btn dark" style="flex:1;padding:15px" onclick="nav('${Q.back}','${Q.ba||''}')">Continue</button><button class="btn ghost" style="flex:1;padding:15px" onclick="nav('shop')">Redeem</button></div></div>`}
+const q=Q.qs[Q.i],ok=Q.sel===q[2];
+return`<div class="qwrap"><div class="row">${X}<div class="bar" style="flex:1;height:10px;margin:0"><i style="width:${Q.i/n*100}%"></i></div><span class="sm" style="font-variant-numeric:tabular-nums">${Q.i+1}/${n}</span></div><div class="card" style="margin-top:20px;padding:20px"><div class="eyebrow">Quiz practice</div><div class="q">${q[0]}</div>${q[1].map((o,i)=>`<button class="opt ${Q.chk?(i===q[2]?'ok':i===Q.sel?'bad':''):Q.sel===i?'sel':''}" onclick="pick(${i})"><b>${'ABCD'[i]}</b>${o}</button>`).join('')}${Q.chk?`<div class="fb" style="background:${ok?'#eefbc0':'#ffe4ec'}"><b>${ok?'Correct, +10 pts.':'Not quite.'}</b> ${q[3]}</div>`:''}</div><button class="btn wide" style="margin-top:16px" ${Q.sel===null?'disabled':''} onclick="step()">${Q.chk?(Q.i+1===n?'Finish':'Next'):'Check'}</button></div>`},
+community:()=>{const col=['#2a49e0','#ff4f8b','#f28c52','#7b7dff','#0f4a2e'],u=[['Aarav',420],['Meera',380],['Kabir',250],['Ishita',190],['Rohan',90]].map((x,i)=>[...x,col[i]]);u.push([S.name,S.xp,'#10201a',1]);u.sort((a,b)=>b[1]-a[1]);
+return`<div class="pg"><div class="eyebrow">Community</div><h1>Leader<br>board</h1><div class="sm" style="margin:8px 0 18px">Top explorers this week. Earn XP to climb.</div><div style="max-width:640px;display:grid;gap:10px">${u.map((x,i)=>`<div class="card row sb" style="padding:12px 14px;${x[3]?'background:var(--lime);border-color:var(--lime)':''}"><div class="row"><b class="disp" style="font-size:24px;width:26px">${i+1}</b><div class="av" style="background:${x[2]}">${esc(x[0][0].toUpperCase())}</div><b>${esc(x[0])}${x[3]?' (you)':''}</b></div><b style="font-variant-numeric:tabular-nums">${x[1]} XP</b></div>`).join('')}</div><button class="btn dark" style="margin-top:18px" onclick="daily()">${ic('zap',16,2)}Take the daily challenge</button></div>`},
+shop:()=>`<div class="pg"><div class="row sb"><div class="eyebrow">Shop</div><span class="chip lime">${ic('star',15,1.8,1)}${S.pts}</span></div><h1>Gear up.<br>Space on.</h1><div class="sm" style="margin-top:8px">Spend the points you earn on rewards.</div><div class="chips">${['All','Digital','Gear'].map(c=>`<button class="ch ${SF===c?'on':''}" onclick="SF='${c}';draw()">${c}</button>`).join('')}</div><div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(165px,1fr))">${SHOP.map((s,i)=>[s,i]).filter(x=>SF==='All'||x[0][2]===SF).map(([s,i])=>`<div class="card item"><div class="img">${ic(s[0],52,1.4)}</div><div class="in"><b>${s[1]}</b><div class="sm">${s[2]}</div><div class="row sb" style="margin-top:10px">${S.owned.includes(i)?`<span class="eyebrow" style="color:var(--g)">Owned</span>`:`<b class="row" style="gap:4px">${ic('star',14,1.8,1)}${s[3]}</b><button class="btn ${S.pts<s[3]?'dim':''}" style="padding:8px 14px" onclick="buy(${i})">Get</button>`}</div></div></div>`).join('')}</div></div>`,
+profile:()=>`<div class="pg"><div class="eyebrow">Profile</div><div class="card" style="text-align:center;margin-top:12px;max-width:620px"><div class="av" style="width:76px;height:76px;margin:0 auto 10px;background:var(--g);color:var(--lime)">${ic(S.owned.includes(1)?'rocket':'user',34,1.7)}</div><h2 style="font-size:36px;color:var(--g)">${esc(S.name)}</h2><div class="sm">${rank()} · Level ${lvl()} · ${S.xp%100}/100 XP</div><div class="bar"><i style="width:${S.xp%100}%"></i></div><button class="btn ghost" style="margin-top:14px;padding:8px 14px" onclick="rename()">${ic('pen',14,2)}Edit name</button></div><div class="card stats" style="margin:14px 0;max-width:620px"><div><b>${S.pts}</b><span class="sm">Points</span></div><div><b>${Object.keys(S.done).length}/${LS().length}</b><span class="sm">Lessons</span></div><div><b>${S.streak}</b><span class="sm">Streak</span></div></div><div class="sec">Badges</div><div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(130px,1fr));max-width:720px">${BADGES.map(b=>`<div class="card badge ${b[3](S)?'on':''}"><div class="bi">${ic(b[0],24,1.8)}</div><b style="font-size:13px">${b[1]}</b><div class="sm">${b[2]}</div></div>`).join('')}</div><button class="btn ghost" style="margin-top:22px" onclick="if(confirm('Reset all progress?')){S={...D0,days:[]};save();nav('home')}">Reset progress</button></div>`};
+/* ---------- actions ---------- */
+function open(cfg){Q={...cfg,i:-1,sel:null,chk:false,ok:0};nav('quiz')}
+function start(id){const c=C.find(c=>c.L.some(l=>l.id===id)),l=c.L.find(l=>l.id===id);open({id,t:l.t,intro:l.i,qs:l.q,back:'course',ba:c.id})}
+function daily(){open({id:'daily',t:'Daily quiz',intro:'Five random questions from across the universe. Your first daily run each day earns a bonus.',qs:LS().flatMap(l=>l.q).sort(()=>Math.random()-.5).slice(0,5),back:'home'})}
+function pick(i){if(!Q.chk){Q.sel=i;draw()}}
+function step(){if(!Q.chk){Q.chk=true;if(Q.sel===Q.qs[Q.i][2])Q.ok++}else{Q.i++;Q.chk=false;Q.sel=null}draw();scrollTo(0,0)}
+function claim(){if(S.daily===today())return;S.daily=today();S.pts+=10;S.xp+=10;bump();save();toast('+10 points');confetti();draw()}
+function buy(i){const p=SHOP[i][3];if(S.pts<p)return toast(`You need ${p-S.pts} more points`);S.pts-=p;S.owned.push(i);save();toast('Redeemed');confetti();draw()}
+function rename(){const n=prompt('Your name',S.name);if(n&&n.trim()){S.name=n.trim().slice(0,20);save();draw()}}
+addEventListener('keydown',e=>{if(P!=='quiz'||!Q||Q.i<0||Q.i>=Q.qs.length)return;const k=+e.key;if(k>=1&&k<=Q.qs[Q.i][1].length)pick(k-1);else if(e.key==='Enter'&&Q.sel!==null)step()});
+function draw(){const full=P==='splash'||P==='quiz';$('app').innerHTML=V[P]();
+$('shell').className='shell'+(full?' solo':'');$('side').style.display=full?'none':'';$('tabs').style.display=full?'none':'';
+const T=[['home','home','Home'],['learn','rocket','Learn'],['community','users','Community'],['shop','bag','Shop'],['profile','user','Profile']],on=P==='course'?'learn':P;
+$('tabs').innerHTML=T.map(t=>`<button class="${on===t[0]?'on':''}" onclick="nav('${t[0]}')" aria-label="${t[2]}">${ic(t[1],22,1.9)}${t[2]}</button>`).join('');
+$('side').innerHTML=logo+T.map(t=>`<button class="nv ${on===t[0]?'on':''}" onclick="nav('${t[0]}')">${ic(t[1],20,1.9)}${t[2]}</button>`).join('')+`<div class="card me"><div class="eyebrow">${rank()} · Lv ${lvl()}</div><div class="row sb" style="margin-top:6px"><b>${S.xp%100}/100 XP</b><span class="chip lime">${ic('star',14,1.8,1)}${S.pts}</span></div><div class="bar"><i style="width:${S.xp%100}%"></i></div></div>`}
+draw();
+</script>
+</body>
+</html>
