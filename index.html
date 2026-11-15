@@ -87,6 +87,40 @@ nav.tabs button.on{color:var(--g);background:#eaf7b8}
 .cf{position:fixed;top:-20px;width:9px;height:14px;z-index:99;border-radius:2px;animation:fall 2.3s ease-in forwards}
 @keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
 .toast{position:fixed;top:16px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:99px;z-index:100;font-size:14px;font-weight:700;white-space:nowrap}
+.qwrap{padding-bottom:190px}
+.qslide{animation:slideIn .38s cubic-bezier(.2,.8,.2,1) both}.qslide.leave{animation:slideOut .18s ease-in forwards}
+@keyframes slideIn{from{opacity:0;transform:translateX(48px)}to{opacity:1;transform:none}}
+@keyframes slideOut{to{opacity:0;transform:translateX(-48px)}}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.05)}100%{transform:scale(1)}}
+@keyframes up{from{transform:translateY(100%)}to{transform:none}}
+@keyframes xp{0%{opacity:0;transform:translateY(8px) scale(.8)}20%{opacity:1}100%{opacity:0;transform:translateY(-36px) scale(1.05)}}
+@keyframes bounce{0%{transform:scale(0) rotate(-20deg)}60%{transform:scale(1.15) rotate(6deg)}100%{transform:none}}
+.rise{animation:rise .5s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--d,0s)}
+.trophy{width:96px;height:96px;margin:0 auto 18px;border-radius:50%;background:var(--lime);display:grid;place-items:center;color:var(--g);animation:bounce .7s cubic-bezier(.3,1.5,.5,1) both}
+.rs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px}.rs .card{padding:14px 6px}.rs b{display:block;font-size:34px;color:var(--g)}
+.opt{border-bottom-width:4px;animation:rise .4s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0)*70ms + .12s)}
+.opt:active{transform:translateY(2px);border-bottom-width:2px}
+.opt.ok{animation:pop .5s}.opt.bad{animation:shake .35s}.opt.dim{opacity:.5}
+.qbar{flex:1;height:14px;border-radius:9px;background:#e3ddcc;overflow:hidden}
+.qbar i{display:block;height:100%;border-radius:9px;background:var(--lime);position:relative;transition:width .55s cubic-bezier(.3,1.3,.5,1)}
+.qbar i:after{content:"";position:absolute;left:8px;right:8px;top:3px;height:4px;border-radius:4px;background:#ffffff70}
+.chip.combo{background:#ffe6d0;color:#c2500a;animation:pop .4s}.combo:empty{display:none}
+.xpop{position:absolute;right:16px;top:14px;background:var(--g);color:var(--lime);font-weight:700;font-size:13px;padding:4px 10px;border-radius:99px;animation:xp .9s ease-out forwards;pointer-events:none}
+.foot{position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--cream);border-top:1px solid var(--line);padding:16px 20px calc(16px + env(safe-area-inset-bottom))}
+.fin{max-width:660px;margin:0 auto}
+.foot.good{background:#e4f7a0;border-color:#cfe87a}.foot.bad{background:#ffdce6;border-color:#ffbfd0}
+.foot.good,.foot.bad{animation:up .38s cubic-bezier(.2,.9,.3,1.15)}
+.foot.out{transform:translateY(100%);transition:transform .18s ease-in;animation:none}
+.fin.res{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.fm{display:flex;gap:12px;align-items:center;flex:1;min-width:220px}
+.fi{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;flex:none;background:#fff}
+.good .fi{color:#4c7a00}.bad .fi{color:#d6285f}
+.ft{display:block;font-size:17px}.good .ft{color:#3f6b00}.bad .ft{color:#b3123f}.fe{font-size:13.5px;opacity:.85}
+.foot .btn{box-shadow:0 4px 0 #9bc01b}.foot .btn:active{transform:translateY(3px);box-shadow:0 1px 0 #9bc01b}
+.foot .btn.dark{box-shadow:0 4px 0 #082b1a}.foot .btn.pinkb{background:var(--pink);color:#fff;box-shadow:0 4px 0 #b32a5b}
+.foot .btn[disabled]{background:#e3ddcc;color:#9a9a8c;opacity:1;box-shadow:0 4px 0 #cfc8b3}
+@media(max-width:600px){.fin.res .btn{width:100%}}
 @media(min-width:640px){.tiles{max-width:560px}}
 @media(min-width:960px){
 .shell{display:grid;grid-template-columns:250px 1fr;max-width:1280px;margin:0 auto}
@@ -130,6 +164,8 @@ shirt:'<path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58
 scope:'<path d="m10.065 12.493-6.18 1.318a.934.934 0 0 1-1.108-.702l-.537-2.15a1.07 1.07 0 0 1 .691-1.265l13.504-4.44"/><path d="m13.56 11.747 4.332-.924"/><path d="m16 21-3.105-6.21"/><path d="M16.485 5.94a2 2 0 0 1 1.455-2.425l1.09-.272a1 1 0 0 1 1.212.727l1.515 6.06a1 1 0 0 1-.727 1.213l-1.09.272a2 2 0 0 1-2.425-1.455z"/><path d="m6.158 8.633 1.114 4.456"/><path d="m8 21 3.105-6.21"/><circle cx="12" cy="13" r="2"/>',
 orbit:'<circle cx="12" cy="12" r="3"/><path d="M20.2 20.2c2.04-2.03.02-7.36-4.5-11.9-4.54-4.52-9.87-6.54-11.9-4.5-2.04 2.03-.02 7.36 4.5 11.9 4.54 4.52 9.87 6.54 11.9 4.5Z"/><path d="M15.7 15.7c4.52-4.54 6.54-9.87 4.5-11.9-2.03-2.04-7.36-.02-11.9 4.5-4.52 4.54-6.54 9.87-4.5 11.9 2.03 2.04 7.36.02 11.9-4.5Z"/>',
 hole:'<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/>',
+vol:'<path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>',
+vx:'<path d="M11 5 6 9H2v6h4l5 4z"/><path d="m22 9-6 6"/><path d="m16 9 6 6"/>',
 pen:'<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>'};
 const ic=(n,s=20,w=1.8,f)=>`<svg class="ic" width="${s}" height="${s}" viewBox="0 0 24 24" fill="${f?'currentColor':'none'}" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${I[n]}</svg>`;
 /* ---------- art ---------- */
@@ -216,30 +252,47 @@ ${nx?`<button class="card" onclick="start('${nx.id}')"><div class="row sb"><div>
 learn:()=>`<div class="pg"><div class="row sb"><div class="eyebrow">Learn</div><div class="row" style="gap:6px;color:var(--ink)"><span class="chip" style="background:#ebe6d8">${ic('flame',15,1.8,1)}${S.streak}</span><span class="chip lime">${ic('star',15,1.8,1)}${S.pts}</span></div></div><h1>Courses<br>for you</h1><div class="chips">${[['all','All'],...C.map(c=>[c.id,c.t])].map(x=>`<button class="ch ${F===x[0]?'on':''}" onclick="F='${x[0]}';draw()">${x[1]}</button>`).join('')}</div><div class="grid">${C.filter(c=>F==='all'||c.id===F).map(c=>{const[n,p]=prog(c);return`<button class="card cc" onclick="nav('course','${c.id}')">${art(c)}<div class="row sb"><span class="eyebrow">${c.L.length} lessons</span><span class="sm"><b>${c.lv}</b></span></div><h3>${c.t}</h3><div class="sm">${c.d}</div><div class="bar"><i style="width:${p}%"></i></div><div class="row sb" style="margin-top:12px"><span class="sm">${n}/${c.L.length} done</span><span class="btn">${n?'Continue':'Start'}</span></div></button>`}).join('')}</div></div>`,
 course:()=>{const c=C.find(x=>x.id===A);return`<div class="pg"><button class="back" aria-label="Back" onclick="nav('learn')">${ic('left',20,2)}</button><div style="margin-top:16px;max-width:620px">${art(c)}</div><h1>${c.t}</h1><div class="sm" style="margin-top:6px">${c.d}</div><div class="sec">Lessons</div><div style="max-width:620px;display:grid;gap:10px">${c.L.map((l,i)=>{const lock=i>0&&!S.done[c.L[i-1].id];return`<button class="card row sb" onclick="${lock?"toast('Finish the previous lesson first')":`start('${l.id}')`}"><div class="row"><div class="node ${lock?'k':''}">${S.done[l.id]?ic('check',20,2.6):lock?ic('lock',18,2):i+1}</div><div><b>${l.t}</b><div class="sm">${l.q.length} questions · up to ${l.q.length*10+20} pts</div></div></div>${ic('right',18,2)}</button>`}).join('')}</div></div>`},
 quiz:()=>{const n=Q.qs.length,X=`<button class="back" aria-label="Close" onclick="nav('${Q.back}','${Q.ba||''}')">${ic('x',20,2)}</button>`;
-if(Q.i<0)return`<div class="qwrap">${X}<h1 style="margin-top:16px;font-size:clamp(44px,9vw,64px);color:var(--g)">${Q.t}</h1><div class="card" style="margin-top:16px;font-size:17px;line-height:1.6">${Q.intro}</div><button class="btn wide" style="margin-top:16px" onclick="Q.i=0;draw()">Start quiz</button></div>`;
+if(Q.i<0)return`<div class="qwrap">${X}<div class="qslide"><h1 style="margin-top:16px;font-size:clamp(44px,9vw,64px);color:var(--g)">${Q.t}</h1><div class="card" style="margin-top:16px;font-size:17px;line-height:1.6">${Q.intro}</div></div></div><div class="foot"><div class="fin"><button class="btn wide" onclick="Q.i=0;draw()">Start quiz</button></div></div>`;
 if(Q.i>=n){if(!Q.fin){Q.fin=1;const b=lvl();let e=Q.ok*10;if(Q.id==='daily'){if(S.daily!==today()){e+=10;S.daily=today()}}else if(!S.done[Q.id]){e+=20;S.done[Q.id]=1}Q.e=e;S.pts+=e;S.xp+=e;bump();Q.up=lvl()>b;save();if(Q.ok>=n-1)confetti()}
-return`<div class="qwrap" style="text-align:center;padding-top:48px"><div style="width:96px;height:96px;margin:0 auto 18px;border-radius:50%;background:var(--lime);display:grid;place-items:center;color:var(--g)">${ic('trophy',46,1.6)}</div><h1 style="color:var(--g);font-size:56px">Mission<br>complete</h1><p style="margin:10px 0 16px" class="sm">${Q.ok} of ${n} correct${Q.up?` · You’re now a ${rank()}`:''}</p><div class="card disp" style="display:inline-block;width:auto;background:var(--g);color:var(--lime);font-size:40px;padding:12px 26px">+${Q.e} pts</div><div class="row" style="margin-top:26px"><button class="btn dark" style="flex:1;padding:15px" onclick="nav('${Q.back}','${Q.ba||''}')">Continue</button><button class="btn ghost" style="flex:1;padding:15px" onclick="nav('shop')">Redeem</button></div></div>`}
-const q=Q.qs[Q.i],ok=Q.sel===q[2];
-return`<div class="qwrap"><div class="row">${X}<div class="bar" style="flex:1;height:10px;margin:0"><i style="width:${Q.i/n*100}%"></i></div><span class="sm" style="font-variant-numeric:tabular-nums">${Q.i+1}/${n}</span></div><div class="card" style="margin-top:20px;padding:20px"><div class="eyebrow">Quiz practice</div><div class="q">${q[0]}</div>${q[1].map((o,i)=>`<button class="opt ${Q.chk?(i===q[2]?'ok':i===Q.sel?'bad':''):Q.sel===i?'sel':''}" onclick="pick(${i})"><b>${'ABCD'[i]}</b>${o}</button>`).join('')}${Q.chk?`<div class="fb" style="background:${ok?'#eefbc0':'#ffe4ec'}"><b>${ok?'Correct, +10 pts.':'Not quite.'}</b> ${q[3]}</div>`:''}</div><button class="btn wide" style="margin-top:16px" ${Q.sel===null?'disabled':''} onclick="step()">${Q.chk?(Q.i+1===n?'Finish':'Next'):'Check'}</button></div>`},
+const acc=Math.round(Q.ok/n*100);
+return`<div class="qwrap" style="text-align:center;padding-top:40px;padding-bottom:40px"><div class="trophy">${ic('trophy',46,1.6)}</div><h1 class="rise" style="--d:.2s;color:var(--g);font-size:56px">Mission<br>complete</h1><p class="sm rise" style="--d:.3s;margin-top:10px">${Q.ok} of ${n} correct${Q.up?` · You’re now a ${rank()}`:''}</p><div class="rs"><div class="card rise" style="--d:.4s"><b class="disp cu" data-to="${Q.e}" data-pre="+">+0</b><span class="sm">XP earned</span></div><div class="card rise" style="--d:.5s"><b class="disp cu" data-to="${acc}" data-suf="%">0%</b><span class="sm">Accuracy</span></div><div class="card rise" style="--d:.6s"><b class="disp cu" data-to="${S.streak}">0</b><span class="sm">Day streak</span></div></div><div class="row rise" style="--d:.75s;margin-top:24px"><button class="btn dark" style="flex:1;padding:15px" onclick="nav('${Q.back}','${Q.ba||''}')">Continue</button><button class="btn ghost" style="flex:1;padding:15px" onclick="nav('shop')">Redeem</button></div></div>`}
+const q=Q.qs[Q.i];
+return`<div class="qwrap"><div class="row">${X}<div class="qbar"><i id="pb" style="width:${Q.i/n*100}%"></i></div><span id="combo" class="chip combo">${Q.combo>1?ic('flame',14,1.8,1)+'×'+Q.combo:''}</span><button class="back" aria-label="Toggle sound" onclick="S.mute=!S.mute;save();this.innerHTML=snd()">${snd()}</button></div><div class="card qslide" id="qc" style="margin-top:20px;padding:20px;position:relative"><div class="eyebrow">Question ${Q.i+1} of ${n}</div><div class="q">${q[0]}</div>${q[1].map((o,i)=>`<button class="opt" style="--i:${i}" onclick="pick(${i})"><b>${'ABCD'[i]}</b>${o}</button>`).join('')}</div></div><div class="foot" id="foot">${footer()}</div>`},
 community:()=>{const col=['#2a49e0','#ff4f8b','#f28c52','#7b7dff','#0f4a2e'],u=[['Aarav',420],['Meera',380],['Kabir',250],['Ishita',190],['Rohan',90]].map((x,i)=>[...x,col[i]]);u.push([S.name,S.xp,'#10201a',1]);u.sort((a,b)=>b[1]-a[1]);
 return`<div class="pg"><div class="eyebrow">Community</div><h1>Leader<br>board</h1><div class="sm" style="margin:8px 0 18px">Top explorers this week. Earn XP to climb.</div><div style="max-width:640px;display:grid;gap:10px">${u.map((x,i)=>`<div class="card row sb" style="padding:12px 14px;${x[3]?'background:var(--lime);border-color:var(--lime)':''}"><div class="row"><b class="disp" style="font-size:24px;width:26px">${i+1}</b><div class="av" style="background:${x[2]}">${esc(x[0][0].toUpperCase())}</div><b>${esc(x[0])}${x[3]?' (you)':''}</b></div><b style="font-variant-numeric:tabular-nums">${x[1]} XP</b></div>`).join('')}</div><button class="btn dark" style="margin-top:18px" onclick="daily()">${ic('zap',16,2)}Take the daily challenge</button></div>`},
 shop:()=>`<div class="pg"><div class="row sb"><div class="eyebrow">Shop</div><span class="chip lime">${ic('star',15,1.8,1)}${S.pts}</span></div><h1>Gear up.<br>Space on.</h1><div class="sm" style="margin-top:8px">Spend the points you earn on rewards.</div><div class="chips">${['All','Digital','Gear'].map(c=>`<button class="ch ${SF===c?'on':''}" onclick="SF='${c}';draw()">${c}</button>`).join('')}</div><div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(165px,1fr))">${SHOP.map((s,i)=>[s,i]).filter(x=>SF==='All'||x[0][2]===SF).map(([s,i])=>`<div class="card item"><div class="img">${ic(s[0],52,1.4)}</div><div class="in"><b>${s[1]}</b><div class="sm">${s[2]}</div><div class="row sb" style="margin-top:10px">${S.owned.includes(i)?`<span class="eyebrow" style="color:var(--g)">Owned</span>`:`<b class="row" style="gap:4px">${ic('star',14,1.8,1)}${s[3]}</b><button class="btn ${S.pts<s[3]?'dim':''}" style="padding:8px 14px" onclick="buy(${i})">Get</button>`}</div></div></div>`).join('')}</div></div>`,
 profile:()=>`<div class="pg"><div class="eyebrow">Profile</div><div class="card" style="text-align:center;margin-top:12px;max-width:620px"><div class="av" style="width:76px;height:76px;margin:0 auto 10px;background:var(--g);color:var(--lime)">${ic(S.owned.includes(1)?'rocket':'user',34,1.7)}</div><h2 style="font-size:36px;color:var(--g)">${esc(S.name)}</h2><div class="sm">${rank()} · Level ${lvl()} · ${S.xp%100}/100 XP</div><div class="bar"><i style="width:${S.xp%100}%"></i></div><button class="btn ghost" style="margin-top:14px;padding:8px 14px" onclick="rename()">${ic('pen',14,2)}Edit name</button></div><div class="card stats" style="margin:14px 0;max-width:620px"><div><b>${S.pts}</b><span class="sm">Points</span></div><div><b>${Object.keys(S.done).length}/${LS().length}</b><span class="sm">Lessons</span></div><div><b>${S.streak}</b><span class="sm">Streak</span></div></div><div class="sec">Badges</div><div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(130px,1fr));max-width:720px">${BADGES.map(b=>`<div class="card badge ${b[3](S)?'on':''}"><div class="bi">${ic(b[0],24,1.8)}</div><b style="font-size:13px">${b[1]}</b><div class="sm">${b[2]}</div></div>`).join('')}</div><button class="btn ghost" style="margin-top:22px" onclick="if(confirm('Reset all progress?')){S={...D0,days:[]};save();nav('home')}">Reset progress</button></div>`};
 /* ---------- actions ---------- */
-function open(cfg){Q={...cfg,i:-1,sel:null,chk:false,ok:0};nav('quiz')}
+function open(cfg){Q={...cfg,i:-1,sel:null,chk:false,ok:0,combo:0};nav('quiz')}
 function start(id){const c=C.find(c=>c.L.some(l=>l.id===id)),l=c.L.find(l=>l.id===id);open({id,t:l.t,intro:l.i,qs:l.q,back:'course',ba:c.id})}
 function daily(){open({id:'daily',t:'Daily quiz',intro:'Five random questions from across the universe. Your first daily run each day earns a bonus.',qs:LS().flatMap(l=>l.q).sort(()=>Math.random()-.5).slice(0,5),back:'home'})}
-function pick(i){if(!Q.chk){Q.sel=i;draw()}}
-function step(){if(!Q.chk){Q.chk=true;if(Q.sel===Q.qs[Q.i][2])Q.ok++}else{Q.i++;Q.chk=false;Q.sel=null}draw();scrollTo(0,0)}
 function claim(){if(S.daily===today())return;S.daily=today();S.pts+=10;S.xp+=10;bump();save();toast('+10 points');confetti();draw()}
 function buy(i){const p=SHOP[i][3];if(S.pts<p)return toast(`You need ${p-S.pts} more points`);S.pts-=p;S.owned.push(i);save();toast('Redeemed');confetti();draw()}
 function rename(){const n=prompt('Your name',S.name);if(n&&n.trim()){S.name=n.trim().slice(0,20);save();draw()}}
-addEventListener('keydown',e=>{if(P!=='quiz'||!Q||Q.i<0||Q.i>=Q.qs.length)return;const k=+e.key;if(k>=1&&k<=Q.qs[Q.i][1].length)pick(k-1);else if(e.key==='Enter'&&Q.sel!==null)step()});
-function draw(){const full=P==='splash'||P==='quiz';$('app').innerHTML=V[P]();
+addEventListener('keydown',e=>{if(P!=='quiz'||!Q||Q.i<0||Q.i>=Q.qs.length)return;const k=+e.key;if(k>=1&&k<=Q.qs[Q.i][1].length)pick(k-1);else if(e.key==='Enter'&&Q.sel!==null){e.preventDefault();step()}});
+function draw(){const full=P==='splash'||P==='quiz';$('app').innerHTML=V[P]();if(P==='quiz'&&Q&&Q.i>=Q.qs.length)countUp();
 $('shell').className='shell'+(full?' solo':'');$('side').style.display=full?'none':'';$('tabs').style.display=full?'none':'';
 const T=[['home','home','Home'],['learn','rocket','Learn'],['community','users','Community'],['shop','bag','Shop'],['profile','user','Profile']],on=P==='course'?'learn':P;
 $('tabs').innerHTML=T.map(t=>`<button class="${on===t[0]?'on':''}" onclick="nav('${t[0]}')" aria-label="${t[2]}">${ic(t[1],22,1.9)}${t[2]}</button>`).join('');
 $('side').innerHTML=logo+T.map(t=>`<button class="nv ${on===t[0]?'on':''}" onclick="nav('${t[0]}')">${ic(t[1],20,1.9)}${t[2]}</button>`).join('')+`<div class="card me"><div class="eyebrow">${rank()} · Lv ${lvl()}</div><div class="row sb" style="margin-top:6px"><b>${S.xp%100}/100 XP</b><span class="chip lime">${ic('star',14,1.8,1)}${S.pts}</span></div><div class="bar"><i style="width:${S.xp%100}%"></i></div></div>`}
+const snd=()=>ic(S.mute?'vx':'vol',20,2);
+const MSG=['Nice work!','Spot on!','Brilliant!','Correct!'];
+function footer(){if(!Q.chk)return`<div class="fin"><button class="btn wide" ${Q.sel===null?'disabled':''} onclick="step()">Check</button></div>`;
+const q=Q.qs[Q.i],ok=Q.sel===q[2],last=Q.i+1===Q.qs.length;
+return`<div class="fin res"><div class="fm"><div class="fi">${ic(ok?'check':'x',22,3)}</div><div><b class="ft">${ok?Q.msg:'Correct answer: '+q[1][q[2]]}</b><div class="fe">${q[3]}</div></div></div><button class="btn ${ok?'dark':'pinkb'}" onclick="step()">${last?'Finish':'Continue'}</button></div>`}
+function paint(){const q=Q.qs[Q.i],ok=Q.sel===q[2];
+document.querySelectorAll('.opt').forEach((b,i)=>{b.className='opt'+(Q.chk?(i===q[2]?' ok':i===Q.sel?' bad':' dim'):Q.sel===i?' sel':'')});
+const f=$('foot');f.className='foot'+(Q.chk?(ok?' good':' bad'):'');f.innerHTML=footer();
+if(Q.chk){$('pb').style.width=(Q.i+1)/Q.qs.length*100+'%';const c=$('combo');c.innerHTML=Q.combo>1?ic('flame',14,1.8,1)+'×'+Q.combo:'';c.style.animation='none';c.offsetWidth;c.style.animation='';
+if(ok){const e=document.createElement('div');e.className='xpop';e.textContent='+10 XP';$('qc').append(e);setTimeout(()=>e.remove(),900)}}}
+function pick(i){if(Q.chk)return;Q.sel=i;paint()}
+function step(){if(Q.sel===null||Q.busy)return;
+if(!Q.chk){Q.chk=true;const ok=Q.sel===Q.qs[Q.i][2];if(ok){Q.ok++;Q.combo++}else Q.combo=0;Q.msg=Q.combo>=3?'On fire!':MSG[Math.random()*4|0];sfx(ok);paint();return}
+Q.busy=1;$('qc').classList.add('leave');$('foot').classList.add('out');
+setTimeout(()=>{Q.busy=0;Q.i++;Q.chk=false;Q.sel=null;draw();scrollTo(0,0)},190)}
+let AC;function sfx(ok){try{navigator.vibrate&&navigator.vibrate(ok?15:[30,40,30])}catch(e){}if(S.mute)return;
+try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const t=AC.currentTime;(ok?[523,659,784]:[220,165]).forEach((f,i)=>{const o=AC.createOscillator(),g=AC.createGain(),st=t+i*.09;o.type=ok?'triangle':'sawtooth';o.frequency.value=f;g.gain.setValueAtTime(.0001,st);g.gain.exponentialRampToValueAtTime(.12,st+.02);g.gain.exponentialRampToValueAtTime(.0001,st+.18);o.connect(g);g.connect(AC.destination);o.start(st);o.stop(st+.2)})}catch(e){}}
+function countUp(){document.querySelectorAll('.cu').forEach(e=>{const to=+e.dataset.to,p=e.dataset.pre||'',x=e.dataset.suf||'',t0=performance.now()+400;(function f(t){const k=Math.max(0,Math.min((t-t0)/900,1));e.textContent=p+Math.round(to*(1-Math.pow(1-k,3)))+x;if(k<1)requestAnimationFrame(f)})(performance.now())})}
 draw();
 </script>
 </body>
